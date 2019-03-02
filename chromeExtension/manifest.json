@@ -1,0 +1,29 @@
+{
+    "name": "Disaster Warning",
+    "version": "1.0",
+    "description": "Provide warnings and information for current disasters.",
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+      },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "32": "icon/icon_32.png",
+            "64": "icon/icon_64.png",
+            "128": "icon/icon_128.png",
+            "256": "icon/icon_256.png"
+          }
+    },
+    "icons": {
+            "32": "icon/icon_32.png",
+            "64": "icon/icon_64.png",
+            "128": "icon/icon_128.png",
+            "256": "icon/icon_256.png"
+      },
+    "permissions": [
+        "storage",
+        "geolocation"
+    ],
+    "manifest_version": 2
+  }
