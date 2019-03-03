@@ -1,3 +1,11 @@
+Added Jquery library.
+Now it could not only shows the user's coordinates, but also displays which state/city the user is in.
+
+2019.3.3   HE LIU
+
+
+
+
 Just getting start.
 Contains basic config files, 4 different size icons.
 Can get the user's coordinates by using HTML5 Geolocation
