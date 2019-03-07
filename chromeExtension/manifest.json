@@ -25,5 +25,8 @@
         "storage",
         "geolocation"
     ],
+    "web_accessible_resources": [
+      "data/data.json"
+    ],
     "manifest_version": 2
   }
