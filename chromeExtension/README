@@ -1,5 +1,12 @@
+Added 3 warning images,changed a little to the UI.
+2019.3.9   HE LIU
+
+
+
 Start to build warning contents part.
 2019.3.7   HE LIU
+
+
 
 Added Jquery library.
 Now it could not only show the user's coordinates, but also display which state/city the user is in.
