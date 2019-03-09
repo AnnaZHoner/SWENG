@@ -18,11 +18,24 @@ navigator.geolocation.getCurrentPosition(function(pos,error){
                 }
                 if (city != '') {
                     console.log("Hello to you out there in "+city );
-                    document.getElementById("showPosition").innerHTML="your location is: "+latitude.toFixed(6)+","+longitude.toFixed(6)+"<br>"+"That's "+city;
+                    document.getElementById("showPosition").innerHTML="Your location is: "+latitude.toFixed(6)+","+longitude.toFixed(6)+"<br>"+"That's "+city;
                 }
             }
         
         });
+        var cityList = chrome.extension.getURL("data/world_cities.json");
+        $.getJSON(cityList,function(json){
+            for(var i =1;i<json.length;i++)
+            {
+                if(json[i].country!=json[i-1].country)
+               {
+                document.getElementById("selectCountry").innerHTML+= "<option value=\""+json[i-1].country+"\">" +json[i-1].country+ "</option>";
+                }
+            }
+
+        });
+
+
         var dataurl = chrome.extension.getURL("data/data.json");
         $.getJSON(dataurl,function(json) {
             for(var i = 0; i < json.records.length ; i++)
