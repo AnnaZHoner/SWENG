@@ -26,7 +26,8 @@
         "geolocation"
     ],
     "web_accessible_resources": [
-      "data/data.json"
+      "data/data.json",
+      "image/dangerous.png"
     ],
     "manifest_version": 2
   }

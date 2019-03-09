@@ -1,11 +1,11 @@
 var latitude;
 var longitude;
+var city;
 navigator.geolocation.getCurrentPosition(function(pos,error){
     if(!navigator.geolocation) throw "geolocation not support";
         latitude=pos.coords.latitude;                             
         longitude=pos.coords.longitude;
         var geocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitude+","+longitude+"&key=AIzaSyCUe-myHsErw9OjBwB7mIqlo4FzYX-qzkw";
-        var city = "";
         $.getJSON(geocodingAPI, function (json) {
             if (json.status == "OK") {
                 //Check result 0
@@ -18,7 +18,7 @@ navigator.geolocation.getCurrentPosition(function(pos,error){
                 }
                 if (city != '') {
                     console.log("Hello to you out there in "+city );
-                    document.getElementById("showPosition").innerHTML="your location is: "+latitude+","+longitude+"  That's "+city;
+                    document.getElementById("showPosition").innerHTML="your location is: "+latitude.toFixed(6)+","+longitude.toFixed(6)+"<br>"+"That's "+city;
                 }
             }
         
@@ -28,9 +28,22 @@ navigator.geolocation.getCurrentPosition(function(pos,error){
             for(var i = 0; i < json.records.length ; i++)
             {
                 var result = json.records[i];
-                if(result.city == city)
-                var time = "";
-                document.getElementById("showWarnings").innerHTML+="time: " +result.time +"\n"+"level: " +result.level+"\n"+"details: " +result.details;
+                if(result.city== city)
+                {
+                    if(result.level == "dangerous")
+                    {
+                        document.getElementById("warningImage").innerHTML = "<img src = \"image/dangerous.png\" alt = \"dangerous\">";
+                    }
+                    else if(result.level == "warning")
+                    {
+                        document.getElementById("warningImage").innerHTML = "<img src = \"image/warning.png\" alt = \"warning\">";
+                    }
+                    else if(result.level == "notice")
+                    {
+                        document.getElementById("warningImage").innerHTML = "<img src = \"image/notice.png\" alt = \"notice\">";
+                    }
+                    document.getElementById("showWarnings").innerHTML+="Time: " +result.time +"<br>"+"Level: " +result.level+"<br>"+"Details: " +result.details;
+                }
             }
             
 
