@@ -1,17 +1,20 @@
 <!DOCTYPE html> 
 <html>
 <body>
-<script type = text/javascript src="jquery.js"></script> 
-<script type = text/javascript src="popup.js"></script>  
 <div style="width:280px;align-content: center;">
    <img src="icon/icon_256.png" alt="logo" style="width: 32px;height: 32px;float: left;">
    <h1 style="font-style: italic">arthquake Tracker</h1>
 </div>
 <hr>
-<p id = showPosition></p>
+<p id = showPosition>loading...</p>
 <div>
+   <h4>Country:</h4>
    <select id = selectCountry>
-
+         <option value="" selected="selected">-- Select Country--</option>
+   </select>
+   <h4>City:</h4>
+   <select id = selectCity>
+         <option value="" selected="selected">-- Select City--</option>
    </select>
 </div>
 <hr>
@@ -19,4 +22,6 @@
 <div id = warningImage></div>
 <p id = showWarnings></p>
 </body>
+<script type = text/javascript src="jquery.js"></script> 
+<script type = text/javascript src="popup.js"></script>  
 </html>
