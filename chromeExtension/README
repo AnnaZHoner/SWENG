@@ -1,3 +1,11 @@
+Added a file contains data of all the cities and countries.
+User could manully select their location(country & city). 
+JUST COULD SELECT FROM THE LIST, CAN NOT REALLY CHANGE THEIR LOCATION NOW.
+2019.3.10  HE LIU
+
+
+
+
 Added 3 warning images,changed a little to the UI.
 Working on allowing the user to manually select city.
 2019.3.9   HE LIU
