@@ -1,3 +1,8 @@
+Now the user could change their location manully, the background page could remember their locations.
+Added another 2 cities data files. The previous one was not good enough.
+2019.3.17  HE LIU
+
+
 Added a file contains data of all the cities and countries.
 User could manully select their location(country & city). 
 JUST COULD SELECT FROM THE LIST, CAN NOT REALLY CHANGE THEIR LOCATION NOW.
