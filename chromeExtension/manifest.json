@@ -4,7 +4,7 @@
     "description": "Provide warnings and information for current disasters.",
     "background": {
         "scripts": ["jquery.js","background.js"],
-        "persistent": true
+        "persistent": false
       },
     "browser_action": {
         "default_popup": "popup.html",
@@ -27,7 +27,9 @@
     ],
     "web_accessible_resources": [
       "data/data.json",
-      "image/dangerous.png"
+      "image/dangerous.png",
+      "image/notice.png",
+      "image/warning.png"
     ],
     "manifest_version": 2
   }

@@ -1,3 +1,4 @@
 var latitude;
 var longitude;
-var city="";
+var countrySSelectedStore = "";
+var citySelectedStore = "";
