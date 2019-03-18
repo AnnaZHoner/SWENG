@@ -1,10 +1,16 @@
 {
     "records":[
         {
-            "city":"county dublin",
+            "city":"County Dublin",
             "time":"16:24  2019-03-01",
             "level":"dangerous",
-            "details":"..."
+            "details":"...1"
+        },
+        {
+            "city":"Cork",
+            "time":"16:24  2019-03-12",
+            "level":"safe",
+            "details":"...2"
         }
 
     ]
