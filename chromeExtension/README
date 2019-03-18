@@ -1,3 +1,8 @@
+Added refresh button, now user could refresh to see the latest news after they change the location.
+Fixed a bug for   var bg.citySelectedStore
+2019.3.18  HE LIU
+
+
 Now the user could change their location manully, the background page could remember their locations.
 Added another 2 cities data files. The previous one was not good enough.
 2019.3.17  HE LIU
