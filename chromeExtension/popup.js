@@ -8,6 +8,9 @@ var city;
 navigator.geolocation.getCurrentPosition(function (pos, error) {
 
     if (!navigator.geolocation) throw "geolocation not support";
+    while(typeof(bg.citySelectedStore) == "undefined")
+    {
+    }
     city = bg.citySelectedStore;
     if (city == "") {
         //get latitude and longitude.
@@ -140,4 +143,36 @@ document.getElementById("selectCity").onchange = function () {
     });
 
 
+}
+
+document.getElementById("refreshButton").onclick = function ()
+{
+    //show the warning content.
+    var dataurl = chrome.extension.getURL("data/data.json");
+    $.getJSON(dataurl, function (json) {
+        //looking for the last warning info.
+        for (var i = 0; i < json.records.length; i++) {
+            var result = json.records[i];
+            if (result.city == bg.citySelectedStore) {
+                if (result.level == "dangerous") {
+                    //show warning image.
+                    document.getElementById("warningImage").innerHTML = "<img src = \"image/dangerous.png\" alt = \"dangerous\">";
+                }
+                else if (result.level == "warning") {
+                    document.getElementById("warningImage").innerHTML = "<img src = \"image/warning.png\" alt = \"warning\">";
+                }
+                else if (result.level == "safe") {
+                    document.getElementById("warningImage").innerHTML = "<img src = \"image/notice.png\" alt = \"notice\">";
+                }
+                document.getElementById("showWarnings").innerHTML = "Time: " + result.time + "<br>" + "Level: " + result.level + "<br>" + "Details: " + result.details;
+            break;
+            }
+        }
+        if(i == json.records.length)
+        {
+            document.getElementById("showWarnings").innerHTML = "no info now, try click the refresh button to check the latest new."
+        }
+
+
+    });
 }

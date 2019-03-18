@@ -4,7 +4,7 @@
     "description": "Provide warnings and information for current disasters.",
     "background": {
         "scripts": ["jquery.js","background.js"],
-        "persistent": false
+        "persistent": true
       },
     "browser_action": {
         "default_popup": "popup.html",
