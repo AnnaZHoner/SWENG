@@ -1,3 +1,36 @@
+Description: This is a chrome extension to provide warning info about earthquakes around user's location.
+
+Files :
+   background.js -- This is running at the background all the times(since user open chrome), 
+   it could remember the var in popup.js
+   
+   jquery.js -- jquery libiary.
+   
+   manifest.json -- this is the basic config file for a chrome extension, it records things like permission status,
+   files r/w status, images or icons location, running status and so on.
+   
+   popup.html -- this is the page to show to the user when they click the extension icon.
+   
+   popup.js -- this describe the function of popup.html.
+   
+   image/warning.png -- this is the warning image to show when a "warning" level warning info was found.
+   image/notice.png -- this is the warning image to show when a "safe" level warning info was found.
+   image/dangerous.png -- this is the warning image to show when a "dangerous.png" warning info was found.
+   
+   icon/* -- this contains 4 different size icons(logos) for the extension.
+   
+   data/cities.json -- this contains information(country, longitude, latitude, name) for all the cities in the world.
+   data/countries.json -- this contains information for all the countries in the world.
+   data/data.json -- contains warning data(mock up)
+   
+   <---------------------------------------------- update log below ----------------------------------------------------->
+   
+
+
+
+
+
+
 Added refresh button, now user could refresh to see the latest news after they change the location.
 Fixed a bug for   var bg.citySelectedStore
 2019.3.18  HE LIU
