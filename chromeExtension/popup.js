@@ -8,8 +8,7 @@ var city;
 navigator.geolocation.getCurrentPosition(function (pos, error) {
 
     if (!navigator.geolocation) throw "geolocation not support";
-    while(typeof(bg.citySelectedStore) == "undefined")
-    {
+    while (typeof (bg.citySelectedStore) == "undefined") {
     }
     city = bg.citySelectedStore;
     if (city == "") {
@@ -45,38 +44,50 @@ navigator.geolocation.getCurrentPosition(function (pos, error) {
     else if (city != "") {
 
         console.log("Hello to you out there in " + city);
-        document.getElementById("showPosition").innerHTML = "Your location is: " + bg.latitude + "," + bg.longitude+ "<br>" + "That's " + city +
+        document.getElementById("showPosition").innerHTML = "Your location is: " + bg.latitude + "," + bg.longitude + "<br>" + "That's " + city +
             "<br>" + "If it's not your location, please select below:";
 
     }
 
-    var cityList = chrome.extension.getURL("data/countries.json");
 
-    $.getJSON(cityList, function (json) {
-        //show all the countries, look up countries short name start from "AA" to "ZZ", and set the select list.
-        for (var i=65;i<=90;i++) {
-            for(var j=65;j<=90;j++)
-            {
-                //this is city short name
-                var cSname= "";
-                cSname = String.fromCharCode(i);
-                cSname +=String.fromCharCode(j); 
-                if(typeof(json[cSname])!="undefined")
-                {
-                document.getElementById("selectCountry").innerHTML += "<option value=\"" + cSname+ "\">" + json[cSname].name + "</option>";
-                }
-            }
-            
+    var latitude;
+    var longitude;
+    var countrySSelectedStore = "";
+    var citySelectedStore = "";
+
+
+
+
+
+
+
+
+
+
+
+
+    //show all the countries in the country select listing, get then from countries Database
+    var countriesDB = new PouchDB('https://fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix:e01ad0f8a3355ea74bf8efeb523cd6da8e8afe94f5a26b2e6af4a7112dd1d144@fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix.cloudantnosqldb.appdomain.cloud/countries');
+    countriesDB.allDocs({
+        include_docs: true,
+    }).then(function (result) {
+        console.log(result.rows[0].doc.name);
+        for (var i = 0; i < result.rows.length; i++) {
+            document.getElementById("selectCountry").innerHTML += "<option value=\"" + result.rows[i].doc._id + "\">" + result.rows[i].doc.name + "</option>";
         }
-
-
+    }).catch(function (err) {
+        console.log(err);
     });
 
 
 
 
 
-//show the warning content.
+
+
+
+
+    //show the warning content.
     var dataurl = chrome.extension.getURL("data/data.json");
     $.getJSON(dataurl, function (json) {
         //looking for the last warning info.
@@ -104,49 +115,72 @@ navigator.geolocation.getCurrentPosition(function (pos, error) {
 //after user select country, select corresponding city here.
 document.getElementById("selectCountry").onchange = function () {
     document.getElementById("selectCity").innerHTML = "";
-    var cityList = chrome.extension.getURL("data/cities.json");
-    $.getJSON(cityList, function (json) {
-        var options = $("#selectCountry");
-        countrySelected = options.find("option:selected").val();
-        //store selected country's short name
-        bg.countrySSelectedStore = countrySelected;
+    var citiesDB = new PouchDB('https://fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix:e01ad0f8a3355ea74bf8efeb523cd6da8e8afe94f5a26b2e6af4a7112dd1d144@fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix.cloudantnosqldb.appdomain.cloud/states');
+    var options = $("#selectCountry");
+    countrySelected = options.find("option:selected").val();
 
-        for (var i = 0; i < json.length; i++) {
-            if (json[i].country == countrySelected) {
-                document.getElementById("selectCity").innerHTML += "<option value=\"" + json[i].name + "\">" + json[i].name + "</option>";
-            }
+    //store selected country's short name
+    bg.countrySSelectedStore = options.find("option:selected").text();
+    console.log(parseInt(countrySelected));
+    citiesDB.createIndex({
+        index: { fields: ['country_id'] }
+    });
+    citiesDB.find({
+        selector: {
+            country_id: {$eq:parseInt(countrySelected)}
+        },
+        fields: ['name','_id']
+    }).then(function (result) {
+        console.log(result);
+        for (var i = 0; i < result.docs.length; i++) {
+            document.getElementById("selectCity").innerHTML += "<option value=\"" + result.docs[i]._id + "\">" + result.docs[i].name + "</option>";
 
         }
 
+
+    }).catch(function (err) {
+        console.log(err);
     });
+
+
+
+
 }
 
 document.getElementById("selectCity").onchange = function () {
     var options = $("#selectCity");
     citySelected = options.find("option:selected").text();
     citySelectedStore = citySelected;
-    var cityList = chrome.extension.getURL("data/cities.json");
-    console.log(bg.countrySSelectedStore);
-    $.getJSON(cityList,function(json){
-      for(var i=0;i<json.length;i++)
-      {
-          if(json[i].country == bg.countrySSelectedStore && json[i].name == citySelected)
-          {
-            document.getElementById("showPosition").innerHTML = "Your location is: " + json[i].lat + "," + json[i].lng + "<br>" + "That's " + citySelected +
-            "<br>" + "If it's not your location, please select below:";
-              break;
-          }
-      }
-      bg.longitude = json[i].lng;
-      bg.latitude = json[i].lat;
-      bg.citySelectedStore = citySelected;
-    });
+    // using goole map api to get the longtitude and lagitude for the city.
+    var requestCoor = "https://maps.googleapis.com/maps/api/geocode/json?address="+citySelected+","+bg.countrySSelectedStore+"&key=AIzaSyCUe-myHsErw9OjBwB7mIqlo4FzYX-qzkw"
+    $.getJSON(requestCoor, function (json) {
+        //check if the return json file is alright.
+        if (json.status == "OK") {
+            var location = json.results[0].geometry.location;
+                document.getElementById("showPosition").innerHTML = "Your location is: " + location.lat + "," + location.lng + "<br>" + "That's " + citySelected +
+                    "<br>" + "If it's not your location, please select below:";
+                    bg.longitude = location.lng;
+                    bg.latitude = location.lat;
+                    bg.citySelectedStore = citySelected;
+                }
+        else{
+            document.getElementById("showPosition").innerHTML = "Your location is: " + citySelected +
+                    "<br>" + "If it's not your location, please select below:";
+                    bg.citySelectedStore = citySelected;
 
+        }
+
+
+    });
+               
+            
+        
+
+    
 
 }
 
-document.getElementById("refreshButton").onclick = function ()
-{
+document.getElementById("refreshButton").onclick = function () {
     //show the warning content.
     var dataurl = chrome.extension.getURL("data/data.json");
     $.getJSON(dataurl, function (json) {
@@ -165,12 +199,12 @@ document.getElementById("refreshButton").onclick = function ()
                     document.getElementById("warningImage").innerHTML = "<img src = \"image/notice.png\" alt = \"notice\">";
                 }
                 document.getElementById("showWarnings").innerHTML = "Time: " + result.time + "<br>" + "Level: " + result.level + "<br>" + "Details: " + result.details;
-            break;
+                break;
             }
         }
-        if(i == json.records.length)
-        {
-            document.getElementById("showWarnings").innerHTML = "no info now, try click the refresh button to check the latest new."
+        if (i == json.records.length) {
+            document.getElementById("warningImage").innerHTML = "";
+            document.getElementById("showWarnings").innerHTML = "no info now, try click the refresh button to check the latest new.";
         }
 
 

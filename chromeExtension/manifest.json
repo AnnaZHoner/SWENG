@@ -3,7 +3,7 @@
     "version": "1.0",
     "description": "Provide warnings and information for current disasters.",
     "background": {
-        "scripts": ["jquery.js","background.js"],
+        "scripts": ["jquery.js","background.js","pouchdb-7.0.0.min.js"],
         "persistent": true
       },
     "browser_action": {
