@@ -4,8 +4,10 @@ Files :
    background.js -- This is running at the background all the times(since user open chrome), 
    it could remember the var in popup.js
    
-   jquery.js -- jquery libiary.
-   
+   jquery.js -- jquery library.
+   pouchdb-7.0.0.min.js -- pouchdb library, connect the plugin to the IBM Cloudant.
+     pouchdb.find.js   -- function plugin for pouchdb.
+     
    manifest.json -- this is the basic config file for a chrome extension, it records things like permission status,
    files r/w status, images or icons location, running status and so on.
    
@@ -19,14 +21,14 @@ Files :
    
    icon/* -- this contains 4 different size icons(logos) for the extension.
    
-   data/cities.json -- this contains information(country, longitude, latitude, name) for all the cities in the world.
-   data/countries.json -- this contains information for all the countries in the world.
+
    data/data.json -- contains warning data(mock up)
    
    <---------------------------------------------- update log below ----------------------------------------------------->
    
 
-
+Moved the cities and countries selecting data to IBM Cloudant Database
+2019.3.27  HE LIU
 
 
 
