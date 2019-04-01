@@ -19,7 +19,7 @@ class StdOutListener(StreamListener):
     def on_data(self, data):
         tweet = json.loads(data)
         if (not tweet["retweeted"]) and ('RT @' not in tweet["text"]):
-            self.file.write(json.dumps(tweet["text"]) + '\n')
+            self.file.write(json.dumps(tweet["user"]["location"]) + ',' + json.dumps(tweet["text"]) + '\n')
         return True
 
     def on_error(self, status):
