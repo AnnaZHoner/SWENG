@@ -1,0 +1,6 @@
+,Date,Time,Latitude,Longitude,Type,Depth,Depth Error,Depth Seismic Stations,Magnitude,Magnitude Type,Magnitude Error,Magnitude Seismic Stations,Azimuthal Gap,Horizontal Distance,Horizontal Error,Root Mean Square,ID,Source,Location Source,Magnitude Source,Status
+18876,02/21/2008,14:16:03,41.1444,-114.8721,Earthquake,7.9,1.9,18.0,6.2,ML,0.15,4.0,95.21,0.318,1.61,0.1855,NN00234425,NN,NN,NN,Reviewed
+19854,01/10/2010,00:27:39,40.652,-124.6925,Earthquake,28.737,1.31,51.0,6.5,MW,,8.0,220.0,0.3225,0.55,0.2,NC71338066,NC,NC,NC,Reviewed
+22081,03/10/2014,05:18:13,40.8287,-125.1338,Earthquake,16.6,1.9,,6.8,MW,,5.0,230.4,0.65577016,0.6,0.15,NC72182046,NC,NC,NC,Reviewed
+22354,08/24/2014,10:20:44,38.215166700000005,-122.31233329999999,Earthquake,11.12,0.15,369.0,6.02,MW,,0.0,28.0,0.035789999999999995,0.11,0.18,NC72282711,NC,NC,NC,Reviewed
+23368,12/08/2016,14:49:46,40.4535,-126.1936,Earthquake,8.45,2.4,,6.6,MWW,,,55.0,1.405,6.1,1.11,US20007Z6R,US,US,US,Reviewed
