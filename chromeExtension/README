@@ -25,7 +25,24 @@ Files :
    data/data.json -- contains warning data(mock up)
    
    <---------------------------------------------- update log below ----------------------------------------------------->
-   
+ 
+Instelled JSLint on my machine. 
+Deleted double defined var, changed type of dataurl to const, merged the redundant "showWarnings" function.
+Removed the refresh button. Now it could automatically refresh itself every second.
+
+Plan for the next update: After our alerts data be put into the Cloudant, I will let the extension keep reading the database.
+Once it find the database was updated(if this is possible, else just try to read the database every second), it will then 
+show the location, distressRatio and the tweets. Accroding to the distressRatio, there will be four levels of warning:
+
+ -- when the distressRatio <30, a small green '!' will be showed
+ -- when the distressRatio >30 && <70, a medium yellow '!' will be showed
+ -- when the distressRatio >70, a big red '!' will be showed
+ -- when the distressRatio >=100, it will pop up a window to tell the user to run.
+ 
+2019.4.4   HE LIU
+
+
+
 
 Moved the cities and countries selecting data to IBM Cloudant Database
 2019.3.27  HE LIU
