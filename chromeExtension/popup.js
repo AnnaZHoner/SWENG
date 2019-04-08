@@ -6,12 +6,13 @@ var city;
 
 //getting user's location using HTML5 geolocation
 navigator.geolocation.getCurrentPosition(function (pos, error) {
+    
 
     if (!navigator.geolocation) throw "geolocation not support";
-    while (typeof (bg.citySelectedStore) == "undefined") {
+    while (typeof (bg.citySelectedStore) === "undefined") {
     }
     city = bg.citySelectedStore;
-    if (city == "") {
+    if (city === "") {
         //get latitude and longitude.
         bg.latitude = pos.coords.latitude;
         bg.longitude = pos.coords.longitude;
@@ -50,8 +51,6 @@ navigator.geolocation.getCurrentPosition(function (pos, error) {
     }
 
 
-    var latitude;
-    var longitude;
     var countrySSelectedStore = "";
     var citySelectedStore = "";
 
@@ -66,7 +65,7 @@ navigator.geolocation.getCurrentPosition(function (pos, error) {
 
 
 
-    //show all the countries in the country select listing, get then from countries Database
+    //show all the countries in the country select listing, get them from countries Database
     var countriesDB = new PouchDB('https://fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix:e01ad0f8a3355ea74bf8efeb523cd6da8e8afe94f5a26b2e6af4a7112dd1d144@fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix.cloudantnosqldb.appdomain.cloud/countries');
     countriesDB.allDocs({
         include_docs: true,
@@ -87,29 +86,7 @@ navigator.geolocation.getCurrentPosition(function (pos, error) {
 
 
 
-    //show the warning content.
-    var dataurl = chrome.extension.getURL("data/data.json");
-    $.getJSON(dataurl, function (json) {
-        //looking for the last warning info.
-        for (var i = 0; i < json.records.length; i++) {
-            var result = json.records[i];
-            if (result.city == city) {
-                if (result.level == "dangerous") {
-                    //show warning image.
-                    document.getElementById("warningImage").innerHTML = "<img src = \"image/dangerous.png\" alt = \"dangerous\">";
-                }
-                else if (result.level == "warning") {
-                    document.getElementById("warningImage").innerHTML = "<img src = \"image/warning.png\" alt = \"warning\">";
-                }
-                else if (result.level == "notice") {
-                    document.getElementById("warningImage").innerHTML = "<img src = \"image/notice.png\" alt = \"notice\">";
-                }
-                document.getElementById("showWarnings").innerHTML += "Time: " + result.time + "<br>" + "Level: " + result.level + "<br>" + "Details: " + result.details;
-            }
-        }
 
-
-    });
 });
 
 //after user select country, select corresponding city here.
@@ -162,6 +139,7 @@ document.getElementById("selectCity").onchange = function () {
                     bg.longitude = location.lng;
                     bg.latitude = location.lat;
                     bg.citySelectedStore = citySelected;
+                    city = citySelected;
                 }
         else{
             document.getElementById("showPosition").innerHTML = "Your location is: " + citySelected +
@@ -172,41 +150,40 @@ document.getElementById("selectCity").onchange = function () {
 
 
     });
-               
-            
-        
-
-    
 
 }
 
-document.getElementById("refreshButton").onclick = function () {
+
+
+window.setInterval(function(){
     //show the warning content.
-    var dataurl = chrome.extension.getURL("data/data.json");
+    const dataurl = chrome.extension.getURL("data/alerts.json");
     $.getJSON(dataurl, function (json) {
         //looking for the last warning info.
-        for (var i = 0; i < json.records.length; i++) {
-            var result = json.records[i];
-            if (result.city == bg.citySelectedStore) {
-                if (result.level == "dangerous") {
+
+            var result = json;
+            if (result.location === city) {
+                if (result.distressRatio >=50) {
                     //show warning image.
                     document.getElementById("warningImage").innerHTML = "<img src = \"image/dangerous.png\" alt = \"dangerous\">";
                 }
-                else if (result.level == "warning") {
+                else if (result.distressRatio <50 && result.distressRatio >20) {
                     document.getElementById("warningImage").innerHTML = "<img src = \"image/warning.png\" alt = \"warning\">";
                 }
-                else if (result.level == "safe") {
+                else if (result.distressRatio <20) {
                     document.getElementById("warningImage").innerHTML = "<img src = \"image/notice.png\" alt = \"notice\">";
                 }
-                document.getElementById("showWarnings").innerHTML = "Time: " + result.time + "<br>" + "Level: " + result.level + "<br>" + "Details: " + result.details;
-                break;
+                document.getElementById("showWarnings").innerHTML = "Location: " + result.location + "<br>" + "Distress Ratio: " + result.distressRatio + "<br>" + "Tweets: "+"<br>"+" ";
+                for(var j=0;j<result.tweets.length;j++)
+                {
+                document.getElementById("showWarnings").innerHTML += "<br>"+j+". " + result.tweets[j] + "<hr>";
+                }
             }
-        }
-        if (i == json.records.length) {
+        else {
             document.getElementById("warningImage").innerHTML = "";
             document.getElementById("showWarnings").innerHTML = "no info now, try click the refresh button to check the latest new.";
-        }
+       }
 
 
     });
-}
+},1000);

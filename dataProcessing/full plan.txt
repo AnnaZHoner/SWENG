@@ -1,0 +1,86 @@
+I'm going to be revceiving a constantly updating file that is a text file where
+each line is the location and text of the tweet.
+
+	I am going to write a python script that opens a file and reads from either the
+top or bottom(depending on how the other program is formatted to add lines(they turned out to be oldest at the bottom)).
+
+	That line is then passed through a function where it computes whether if it is relevant to earthquakes or not 
+(or maybe even returns a probability percentage on it(depends on if i do machine learning for this
+or not*)).
+
+	Then the data of the location, and boolean(or percentage) for it being relevant is then passed through a fucntion that 
+sorts by location and gives the data of the boolean/percentage to a thread(each thread representing a counter for 
+how many blips(positive signals received) it has and computes if its time to ring the alarm for a 100% confirmed earthquake).
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+*Now I need to decide how I will do the recognition of how relevant a tweet is.
+Seems like i cant escape the statistical approach so some level of machine learning is required.
+
+	I could just upon reading 'quake' make it a boolean true or false and pass it to the thread function
+that checks how many trues it has gotten against falses and decides at some number* to run the alarm. I'm not
+sure if this will account for the false positives, but I can think of a more accutrate way.
+
+*(could be obtained statistically or by just a rough human estimate, the latter is kind of out of the question because the aim
+is to have no inaccuracies)
+
+	The more accurate way I could do it is to turn each thread in to a machine learning model that constantly is calculating 
+the percentage of its location having an earthquake.
+
+And once it reaches alarm level it just activates the alarm by having a function that takes the threads location and current time and maybe more stats 
+and turns it into a string and writes it to a file where the plugin compartment is reading the file and updating the users interface based on what it reads.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+So my the more accurate way in more detail: Constantly reads the bottom lines of the text file. Extracts the line into location and twitter text strings and then 
+depending on the loacation, wakes up a thread and gives it a twitter text string.
+
+	There will be a thread for each location constantly waiting to get a text and then do computations on it based on a its unique machine learning model due to its location
+and update the current state of attributes that are relevent(for example number of relevant tweets compared to irrelevant tweets and current percentage of being being positive) and then 
+goes to sleep. The threads will contain a functions to turn the current state its in(the attriubtes) into a toString(). The threads will be able to be woken up to be requested a toString.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+I will try to train a machine learning model to detect earthquakes with the percentage of it being one of the variables.
+
+the polynomial of the model will look like a + b(n) + b'(P(n-1)) + b''(P(n-2)) ..... b'''(P(n - k)) = ProbabilityOfEarthQuakeHappening where
+a = constant
+b = some coefficient
+list of tweets are updated the index of it starts at 0 and is and new tweets index is the previous index + 1
+n = number of tweets
+k = number of newest tweets to take into account(think about k = 50)
+P(n) =  probability of nth tweet being as a result of an earthquake.
+k can be calculated with statistics or a rough esitmate.
+
+the P(n) could be a funtion that involves the IBM watson NLP model.
+
+I want the NLP model to be able to distinguish if the tweet is due to an earthquake.
+So I input a raw twitter tweet and it returns the probability of it being due to an earthquake.
+
+So enough tweets seeming like its due to an earthquake in a row will trigger the alert.
+
+
+I need to learn how the IBM Watson natrual language understanding works.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+I have looked at the NLP and it seems that I am going to be extractring Emotion Response.
+
+	The probability of a piece of text will be calculated with another trained model that has 
+sadness, fear, joy, disgust, and if the text contained the word quake as input variables.
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Now that i know which machine learning models i have to make, i need to think about what sort of data is most appropriate for each.
+
+
+I think i coul
+
