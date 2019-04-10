@@ -10,7 +10,7 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
     url='https://gateway-lon.watsonplatform.net/natural-language-understanding/api'
 )
 
-keywords = {"quake", "earth", "shake", "tremble"}
+keywords = {"quake", "shake", "tremble"}
 
     # takes in a twitter text in the form of a string and 
     # creates a row with information such as if it contains the keyword
@@ -57,30 +57,50 @@ for index, row in earthquakeTweets.iterrows():
 for index, row in nonEarthquake.iterrows():
     dataframe = dataframe.append(constructRow(row["text"], keywords, False), ignore_index = True)   # isEarthquake column = False
 
+# remove invalid rows that has 0's in the option columns
 for index, row in dataframe.iterrows():
     if (row["anger"] == 0 and row["disgust"] == 0 and row["fear"] == 0 and row["joy"] == 0 and row["sadness"] == 0):
         dataframe = dataframe.drop(index)
-        
+
+#-------------------------------------------------------------------------------------------        
         
 import numpy as np
-import matplotlib.pyplot as plt
-
 # pretend that 'duringEarthquake' variable is our dependant vraibles
 Y = dataframe.iloc[:, 2:3].values
-
 # the rest are independant variables
 X = dataframe.drop(labels = "duringEarthquake", axis=1)
 
-
-
 # Splitting the dataset into the Training set and Test set
-from sklearn.cross_validation import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.2)
+# Multiple liner regression
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+y_pred = regressor.predict(X_test)
+# Backward elimination
+import statsmodels.formula.api as sm
+# adding a constant to the multiple linear regression(need to do so for .OLS())
+X = np.append(arr = np.ones((2607, 1)).astype(int), values = X, axis = 1 )
+# determining variables of lowest impact
+X_opt = X[:, [0,1,2,3,4,5,6,7,8,9]]
+regressor_OLS = sm.OLS(endog = Y, exog = X_opt).fit()
+regressor_OLS.summary()
+# Seems like keyword "earth" was not adding any value to the reggression.
+X_opt = X[:, [0,1,2,3,5,6,7,8,9]]
+regressor_OLS = sm.OLS(endog = Y, exog = X_opt).fit()
+regressor_OLS.summary()
 
 
-
-
-
+X_train, X_test, y_train, y_test = train_test_split(X_opt, Y, test_size = 0.2)
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+y_pred = regressor.predict(X_test)
+# saving model to file
+import pickle
+file = open("textRecognitionModel.pkl", 'wb')
+pickle.dump(regressor, file)
+file.close()
 
 
 
