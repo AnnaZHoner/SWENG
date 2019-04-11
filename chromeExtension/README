@@ -28,6 +28,8 @@ Files :
 connected the extension to "alerts" database in cloudant, it cloud read the latest alerts from that database. It uses a 
 "onchange" function to automatically check the latest alert if an alert is ouccuring during it's running time.
 
+2019.4.11  HE LIU
+
 
 
 Instelled JSLint on my machine. 
