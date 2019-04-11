@@ -8,7 +8,8 @@ var city;
 navigator.geolocation.getCurrentPosition(function (pos, error) {
     
 
-    if (!navigator.geolocation) throw "geolocation not support";
+    if (navigator.geolocation) 
+    {
     while (typeof (bg.citySelectedStore) === "undefined") {
     }
     city = bg.citySelectedStore;
@@ -51,6 +52,12 @@ navigator.geolocation.getCurrentPosition(function (pos, error) {
             findLatestEvent()
 
     }
+}
+else
+{
+    document.getElementById("showPosition").innerHTML = "Failed to get your location, please select below";
+}
+
 
 
     var countrySSelectedStore = "";
@@ -163,7 +170,7 @@ function findLatestEvent()
 {
 bg.alertsDB.find({
     selector: {
-        country_id: {$eq:city}
+        location: {$eq:city}
     },
     fields: ['location','distressRatio','tweets']
 }).then(function (theResult) {
