@@ -27,5 +27,59 @@ What's inside:
              image/dangerous.png -- this is the warning image to show when a "dangerous.png" warning info was found.
              icon/* -- this contains 4 different size icons(logos) for the extension.
              
-   --chromeExtension Package:
+             
+             
+ --dataProcessing Package:
+         Description: Trained a model for determining how relevant a tweet is and a model for determining if an earthquake 
+                      is happening on a set of tweets, saved both models in .sav files.
+                      
+         Files :
+           Codes : 
+              bashScriptGenerator.py --
+              earthquakeDataPreprocessing.py --
+              tweetContentPreprocessing.py -- 
+              tweetReader.py --
+              tweetsPreprocessing.py --
+              twitter.bat -- 
+           Datafiles :
+              SF_*.json --
+              Watson NLP example.txt --
+              alerts.json -- This contains a sample of alert.
+              dataAroundSF.csv -- This contains some earthquake data for SF.
+              database.csv -- 
+              sampleTweets.txt --
+              textRecognitionModel.sav --
+              tweetDataprep2.spydata --
+              watsonNLPdata.spydata --
+              
+              
+      
+ --datStuff Package:
+          Description:
+           Codes : 
+              statsKeeper.py --
+              streamInterpreter.py --
+              statsKeeper --
+           Datafiles : 
+              Watson NLP example.txt --
+              plan for presentation.txt --
+              sampleTweets.txt --
+              
+              
+              
+ --sampleFromCity:
+          Description:
+           Codes : 
+              tweetsPreprocessing.py --
+               
+              
+           
+           
+              
+      
+           
+              
+              
+              
+               
              
