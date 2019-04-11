@@ -96,21 +96,68 @@ X_train, X_test, y_train, y_test = train_test_split(X_opt, Y, test_size = 0.2)
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 y_pred = regressor.predict(X_test)
+
+
 # saving model to file
 import pickle
-file = open("textRecognitionModel.pkl", 'wb')
+modelFileName = "textRecognitionModel.sav"
+file = open(modelFileName, 'wb', pickle.HIGHEST_PROTOCOL)
 pickle.dump(regressor, file)
+file.close()
+
+file = open("textRecognitionModel.sav", 'rb')
+regressor = pickle.load(file)
+file.close()
+
+# Preparing data for next training
+y_pred = regressor.predict(X_opt)
+d = np.append(y_pred, Y, axis =1 )
+
+# Live version will look at the last 10 tweets and determine whether an
+# earthquake is happening depending onb those 10 tweets.
+# It will only look at the value the the first model gives out
+
+# Need to divide the data set so that each row is 10 consecutive tweet 
+# values(will be X(independant variables)) and the corresponding Y(dependant) 
+# will be wether if there is an earthquake happening.
+
+row = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+dataset = pd.DataFrame()
+NTweets = 10;
+for i in range(np.size(d[:,0:1]) - NTweets):
+    row = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+    for j in range(0 , NTweets):
+        row[j] = d[j + i][0] 
+        print(d[j + i][0])
+    
+    row = pd.Series(row)
+    dataset= dataset.append(row,  ignore_index=True)
+    print("-----------------------------------------")
+    
+
+Xreg2 = dataset
+Yreg2 = d[0:2597,[1]]
+
+
+
+X_train2, X_test2, y_train2, y_test2 = train_test_split(Xreg2,Yreg2, test_size = 0.2)
+regressor2 = LinearRegression()
+regressor2.fit(X_train2, y_train2)
+y_pred2 = regressor2.predict(X_test2)
+
+
+# saving model to file
+import pickle
+modelFileName = "earthquakeProbability.sav"
+file = open(modelFileName, 'wb')
+pickle.dump(regressor2, file,  pickle.HIGHEST_PROTOCOL)
 file.close()
 
 
 
+file = open(modelFileName, 'rb')
+regressor2 = pickle.load(file)
+file.close()
 
-
-
-
-
-
-
-
-
+y_pred2 = regressor2.predict(X_test2)
 
