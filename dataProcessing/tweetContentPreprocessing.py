@@ -4,20 +4,19 @@ from watson_developer_cloud.natural_language_understanding_v1 import Features, E
 import pandas as pd
 
 
-natural_language_understanding = NaturalLanguageUnderstandingV1(
-    version='2018-11-16',
-    iam_apikey='34qzJpNfbmmav0ZFkGM9vM_enLCTAOuQsd5s4odeF19l',
-    url='https://gateway-lon.watsonplatform.net/natural-language-understanding/api'
-)
 
-keywords = {"quake", "shake", "tremble"}
+
 
     # takes in a twitter text in the form of a string and 
     # creates a row with information such as if it contains the keyword
     # 'quake' and columns on sadness, joy, fear, disgust, and, anger
-def constructRow(text, keywords, isEarthquake):
-    
-    
+def constructRow(text, isEarthquake):
+    natural_language_understanding = NaturalLanguageUnderstandingV1(
+    version='2018-11-16',
+    iam_apikey='34qzJpNfbmmav0ZFkGM9vM_enLCTAOuQsd5s4odeF19l',
+    url='https://gateway-lon.watsonplatform.net/natural-language-understanding/api'
+)
+    keywords = {"quake", "shake", "tremble"}
     try:
         response = natural_language_understanding.analyze(
                 html=text,
@@ -37,11 +36,13 @@ def constructRow(text, keywords, isEarthquake):
         # find() returns index of location of keyword, and -1 
         # if none, so I changed it into true/ false
         dictionary[columnName] = text.lower().find(keyword) >= 0
+        
+    print(dictionary)    
     dictionary["duringEarthquake"] = isEarthquake    
-    
+    print(pd.Series(dictionary))
     return pd.Series(dictionary)
 
-
+constructRow("Wakey shakey", isEarthquake= True)
 
 # Dataset with good number of earthquake tweets
 tweets = pd.read_json("SF_2014-08-24.json")
@@ -52,10 +53,10 @@ nonEarthquake = tweets.iloc[13307:15000]        # Before the earthquake(non eart
 dataframe = pd.DataFrame()
 i = 0
 for index, row in earthquakeTweets.iterrows():
-    dataframe = dataframe.append(constructRow(row["text"], keywords, True), ignore_index = True)    # isEarthquake column = True
+    dataframe = dataframe.append(constructRow(row["text"], True), ignore_index = True)    # isEarthquake column = True
     
 for index, row in nonEarthquake.iterrows():
-    dataframe = dataframe.append(constructRow(row["text"], keywords, False), ignore_index = True)   # isEarthquake column = False
+    dataframe = dataframe.append(constructRow(row["text"], False), ignore_index = True)   # isEarthquake column = False
 
 # remove invalid rows that has 0's in the option columns
 for index, row in dataframe.iterrows():
@@ -82,6 +83,9 @@ y_pred = regressor.predict(X_test)
 import statsmodels.formula.api as sm
 # adding a constant to the multiple linear regression(need to do so for .OLS())
 X = np.append(arr = np.ones((2607, 1)).astype(int), values = X, axis = 1 )
+
+
+
 # determining variables of lowest impact
 X_opt = X[:, [0,1,2,3,4,5,6,7,8,9]]
 regressor_OLS = sm.OLS(endog = Y, exog = X_opt).fit()
@@ -91,9 +95,18 @@ X_opt = X[:, [0,1,2,3,5,6,7,8,9]]
 regressor_OLS = sm.OLS(endog = Y, exog = X_opt).fit()
 regressor_OLS.summary()
 
+# Need to swap it here
+tempdf = pd.DataFrame(X_opt)
+columns = tempdf.columns.tolist()
+print(columns)
+tempdf = tempdf[[0,8,7,3,2,1,6,4,5]]
 
-X_train, X_test, y_train, y_test = train_test_split(X_opt, Y, test_size = 0.2)
+
+X_train, X_test, y_train, y_test = train_test_split(tempdf, Y, test_size = 0.2)
 regressor = LinearRegression()
+
+
+
 regressor.fit(X_train, y_train)
 y_pred = regressor.predict(X_test)
 
@@ -161,3 +174,42 @@ file.close()
 
 y_pred2 = regressor2.predict(X_test2)
 
+
+# 1st model expectsan input of a tweet
+
+import pickle
+file = open("textRecognitionModel.sav", 'rb')
+regressor = pickle.load(file)
+file.close()
+
+from watson_developer_cloud import NaturalLanguageUnderstandingV1
+from watson_developer_cloud.natural_language_understanding_v1 import Features, EmotionOptions
+def calculateRelevance(text, regModel):
+    
+    natural_language_understanding = NaturalLanguageUnderstandingV1(
+    version='2018-11-16',
+    iam_apikey='34qzJpNfbmmav0ZFkGM9vM_enLCTAOuQsd5s4odeF19l',
+    url='https://gateway-lon.watsonplatform.net/natural-language-understanding/api'
+    )
+    
+    keywords = {"quake", "shake", "tremble"}
+    try:
+        response = natural_language_understanding.analyze(
+                html=text,
+                features=Features(emotion=EmotionOptions())).get_result()
+        dictionary = response["emotion"]["document"]["emotion"]
+        
+    except Exception as e:
+        print(e)
+        return None
+    
+    for keyword in keywords:
+        columnName = "hasSubstring_" + keyword
+        dictionary[columnName] = text.lower().find(keyword) >= 0
+        
+    one = pd.Series([1])
+    data =pd.DataFrame([list(one.append(pd.Series(dictionary)))])
+    return regModel.predict(data)
+
+print(calculateRelevance("I'm so angry, earthquake!", regressor))
+# Output result to table with text
