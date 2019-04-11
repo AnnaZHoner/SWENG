@@ -37,6 +37,7 @@ navigator.geolocation.getCurrentPosition(function (pos, error) {
                     console.log("Hello to you out there in " + city);
                     document.getElementById("showPosition").innerHTML = "Your location is: " + latitude.toFixed(6) + "," + longitude.toFixed(6) + "<br>" + "That's " + city +
                         "<br>" + "If it's not your location, please select below:";
+                        findLatestEvent()
                 }
             }
 
@@ -47,6 +48,7 @@ navigator.geolocation.getCurrentPosition(function (pos, error) {
         console.log("Hello to you out there in " + city);
         document.getElementById("showPosition").innerHTML = "Your location is: " + bg.latitude + "," + bg.longitude + "<br>" + "That's " + city +
             "<br>" + "If it's not your location, please select below:";
+            findLatestEvent()
 
     }
 
@@ -140,6 +142,7 @@ document.getElementById("selectCity").onchange = function () {
                     bg.latitude = location.lat;
                     bg.citySelectedStore = citySelected;
                     city = citySelected;
+                    findLatestEvent()
                 }
         else{
             document.getElementById("showPosition").innerHTML = "Your location is: " + citySelected +
@@ -155,35 +158,42 @@ document.getElementById("selectCity").onchange = function () {
 
 
 
-window.setInterval(function(){
-    //show the warning content.
-    const dataurl = chrome.extension.getURL("data/alerts.json");
-    $.getJSON(dataurl, function (json) {
-        //looking for the last warning info.
 
-            var result = json;
-            if (result.location === city) {
-                if (result.distressRatio >=50) {
-                    //show warning image.
-                    document.getElementById("warningImage").innerHTML = "<img src = \"image/dangerous.png\" alt = \"dangerous\">";
-                }
-                else if (result.distressRatio <50 && result.distressRatio >20) {
-                    document.getElementById("warningImage").innerHTML = "<img src = \"image/warning.png\" alt = \"warning\">";
-                }
-                else if (result.distressRatio <20) {
-                    document.getElementById("warningImage").innerHTML = "<img src = \"image/notice.png\" alt = \"notice\">";
-                }
-                document.getElementById("showWarnings").innerHTML = "Location: " + result.location + "<br>" + "Distress Ratio: " + result.distressRatio + "<br>" + "Tweets: "+"<br>"+" ";
-                for(var j=0;j<result.tweets.length;j++)
-                {
-                document.getElementById("showWarnings").innerHTML += "<br>"+j+". " + result.tweets[j] + "<hr>";
-                }
-            }
-        else {
-            document.getElementById("warningImage").innerHTML = "";
-            document.getElementById("showWarnings").innerHTML = "no info now, try click the refresh button to check the latest new.";
-       }
+function findLatestEvent()
+{
+bg.alertsDB.find({
+    selector: {
+        country_id: {$eq:city}
+    },
+    fields: ['location','distressRatio','tweets']
+}).then(function (theResult) {
+    //show the last previous event
+    var result = theResult.docs[theResult.docs.length-1];
+    showLatestEvent(result)
 
+}).catch(function (err) {
+    document.getElementById("warningImage").innerHTML = "";
+    document.getElementById("showWarnings").innerHTML = "no info now.";
+  });
+}
 
-    });
-},1000);
+function showLatestEvent(result)
+{
+    if (result.location === city) {
+        if (result.distressRatio >=50) {
+            //show warning image.
+            document.getElementById("warningImage").innerHTML = "<img src = \"image/dangerous.png\" alt = \"dangerous\">";
+        }
+        else if (result.distressRatio <50 && result.distressRatio >20) {
+            document.getElementById("warningImage").innerHTML = "<img src = \"image/warning.png\" alt = \"warning\">";
+        }
+        else if (result.distressRatio <20) {
+            document.getElementById("warningImage").innerHTML = "<img src = \"image/notice.png\" alt = \"notice\">";
+        }
+        document.getElementById("showWarnings").innerHTML = "Location: " + result.location + "<br>" + "Distress Ratio: " + result.distressRatio + "<br>" + "Tweets: "+"<br>"+" ";
+        for(var j=0;j<result.tweets.length;j++)
+        {
+        document.getElementById("showWarnings").innerHTML += "<br>"+j+". " + result.tweets[j] + "<hr>";
+        }
+    }
+}
