@@ -25,7 +25,11 @@ Files :
    data/data.json -- contains warning data(mock up)
    
    <---------------------------------------------- update log below ----------------------------------------------------->
- 
+connected the extension to "alerts" database in cloudant, it cloud read the latest alerts from that database. It uses a 
+"onchange" function to automatically check the latest alert if an alert is ouccuring during it's running time.
+
+
+
 Instelled JSLint on my machine. 
 Deleted double defined var, changed type of dataurl to const, merged the redundant "showWarnings" function.
 Removed the refresh button. Now it could automatically refresh itself every second.
