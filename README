@@ -46,8 +46,9 @@ What's inside:
               twitter.bat -- List of console commands to extract tweets
               
               Deployment:
-                 deploymentDataProcessing.py -- Contains funtions to deal with the database and implements the Multiple Linear Regression
-                                                on the data to update the database with stats.
+                 deploymentDataProcessing.py -- The script that is constantly running.
+                                                Contains funtions to deal with the database and implements the Multiple Linear Regression
+                                                on the data to update the cloud with stats.
                  earthquakeProbability.sav -- Pickle file containing the sklearning LinearRegression() object. Takes the probabilities 
                                               of 10 most recent tweets and determines whether there is an earthquake.
                  textRecognitionModel.sav --  Pickle file containing the sklearning LinearRegression() object. Takes in tweet and
