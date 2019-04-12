@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e768dc19-2171-42de-9f1b-01bc4a6560c3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/dataProcessing/tweetContentPreprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataProcessing/tweetContentPreprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/MANIFEST.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/assistant_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/assistant_v2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/authorization_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/conversation_tone_analyzer_integration/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/conversation_tone_analyzer_integration/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/conversation_tone_analyzer_integration/tone_conversation_integration.v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/conversation_tone_analyzer_integration/tone_detection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/discovery_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/language_translator_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/microphone-speech-to-text.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/natural_language_classifier_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/natural_language_understanding_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/personality_insights_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/speaker_text_to_speech.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/speech_to_text_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/text_to_speech_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/tone_analyzer_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/examples/visual_recognition_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/setup.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud.egg-info/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud.egg-info/SOURCES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud.egg-info/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud.egg-info/requires.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud.egg-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud.egg-info/zip-safe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/assistant_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/assistant_v2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/authorization_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/compare_comply_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/discovery_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/iam_token_manager.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/language_translator_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/natural_language_classifier_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/natural_language_understanding/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/natural_language_understanding/features/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/natural_language_understanding/features/v1/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/natural_language_understanding_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/personality_insights_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/speech_to_text_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/speech_to_text_v1_adapter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/text_to_speech_adapter_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/text_to_speech_v1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/tone_analyzer_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/version.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/visual_recognition_v3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/watson_service.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/websocket/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/websocket/audio_source.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/websocket/recognize_abstract_callback.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/websocket/recognize_listener.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/websocket/synthesize_callback.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/watson-developer-cloud-2.10.1/watson_developer_cloud/websocket/synthesize_listener.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0.tar.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/MANIFEST.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/README.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/setup.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets.egg-info/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets.egg-info/SOURCES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets.egg-info/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets.egg-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets.egg-info/zip-safe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/__main__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/compatibility.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/exceptions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/extensions/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/extensions/base.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/extensions/permessage_deflate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/framing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/handshake.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/headers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/http.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/protocol.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/py35/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/py35/client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/py35/server.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/py36/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/py36/protocol.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/server.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/speedups.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/uri.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataProcessing/websockets-7.0/src/websockets/version.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataStuff/Watson NLP example.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataStuff/plan for presentation.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataStuff/sampleTweets.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataStuff/statsKeeper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataStuff/statsKeeper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataStuff/streamInterpreter.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/keywords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/SF_2014-03-10.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/SF_2014-08-24.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/SF_2016-12-08.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/alerts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/bashScriptGenerator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/dataAroundSF.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/database.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/earthquakeDataPreprocessing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/full plan.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/sampleTweets.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/tweetsPreprocessing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleFromCity/twitter.bat" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/SWENG$tweetContentPreprocessing.coverage" NAME="tweetContentPreprocessing Coverage Results" MODIFIED="1554730555526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataProcessing" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dataProcessing/tweetContentPreprocessing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/dataProcessing/tweetContentPreprocessing.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SWENG" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SWENG" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SWENG" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SWENG" type="462c0819:PsiDirectoryNode" />
+              <item name="dataProcessing" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554731899426" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="tweetContentPreprocessing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SWENG" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dataProcessing" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dataProcessing/tweetContentPreprocessing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.tweetContentPreprocessing" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e768dc19-2171-42de-9f1b-01bc4a6560c3" name="Default Changelist" comment="" />
+      <created>1554727151184</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1554727151184</updated>
+      <workItem from="1554727153137" duration="637000" />
+      <workItem from="1554730208869" duration="1993000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2630000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25301206" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.6535211" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="SciView" order="8" />
+      <window_info anchor="right" id="Database" order="9" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/websocket/_socket.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataProcessing/tweetContentPreprocessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>Python 3.7 (Python3.7)</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -1,3 +1,0 @@
-read in line extract the ones with quake and feed it to a thread that counts
-takes the ratio of the last 30 tweets and sees which ones have the word
-quake in them. and if its over a certain ratio it rings the alarm.
