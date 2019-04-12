@@ -1,5 +1,85 @@
-Program to analyise tweets in a given location with the intent of predicting natural disasters and deliver warnings to users of that area. 
+What does this program do:
+ --This is a program to analyise tweets in a given location with the intent of predicting natural disasters and deliver warnings to users of that area. 
 
-Ernest & Caroline - NLP 
-Daeho             - Scraper
-He                - Plugin & Interfacing
+What's inside:
+ --chromeExtension Package:
+       Description: This is a chrome extension to provide warning info about earthquakes around user's location.
+
+       Files :
+          Codes:
+             background.js -- This is running at the background all the times(since user open chrome), contains part of the functions
+                              of the extension.
+             it could remember the var in popup.js
+             jquery.js -- jquery library.
+             pouchdb-7.0.0.min.js -- pouchdb library, connect the plugin to the IBM Cloudant.
+             pouchdb.find.js   -- function plugin for pouchdb.
+             popup.js -- this describe the function of popup.html. Contains mainly functions of the extension.
+             
+          Configuration Files :
+             manifest.json -- this is the basic config file for a chrome extension, it records things like permission status,
+                              files r/w status, images or icons location, running status and so on.
+          HTML files :
+             popup.html -- this is the page to show to the user when they click the extension icon.
+             
+          Images :
+             image/warning.png -- this is the warning image to show when a "warning" level warning info was found.
+             image/notice.png -- this is the warning image to show when a "safe" level warning info was found.
+             image/dangerous.png -- this is the warning image to show when a "dangerous.png" warning info was found.
+             icon/* -- this contains 4 different size icons(logos) for the extension.
+             
+             
+             
+ --dataProcessing Package:
+         Description: Trained a model for determining how relevant a tweet is and a model for determining if an earthquake 
+                      is happening on a set of tweets, saved both models in .sav files.
+                      
+         Files :
+           Codes : 
+              bashScriptGenerator.py --
+              earthquakeDataPreprocessing.py --
+              tweetContentPreprocessing.py -- 
+              tweetReader.py --
+              tweetsPreprocessing.py --
+              twitter.bat -- 
+           Datafiles :
+              SF_*.json --
+              Watson NLP example.txt --
+              alerts.json -- This contains a sample of alert.
+              dataAroundSF.csv -- This contains some earthquake data for SF.
+              database.csv -- 
+              sampleTweets.txt --
+              textRecognitionModel.sav --
+              tweetDataprep2.spydata --
+              watsonNLPdata.spydata --
+              
+              
+      
+ --datStuff Package:
+          Description:
+           Codes : 
+              statsKeeper.py --
+              streamInterpreter.py --
+              statsKeeper --
+           Datafiles : 
+              Watson NLP example.txt --
+              plan for presentation.txt --
+              sampleTweets.txt --
+              
+              
+              
+ --sampleFromCity:
+          Description:
+           Codes : 
+              tweetsPreprocessing.py --
+               
+              
+           
+           
+              
+      
+           
+              
+              
+              
+               
+             
