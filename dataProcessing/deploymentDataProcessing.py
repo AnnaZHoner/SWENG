@@ -10,29 +10,32 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 
 import pickle
-
-# DEFINE LOCATINS IN THIS LIST TO INCLUDE THEM IN DETECTION
-locations = ["sanfransisco"]
-databases= {}
-
-client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
-client.connect()
-# Create a database for each location
-for loc in locations:
-    databases[loc] = client.create_database(loc + "_database")
+import time
 
 
-    #begin parsing tweets
-# regressor for calculateRelveance()
-file = open("textRecognitionModel.sav", 'rb')
-relevanceRegressor = pickle.load(file)
-file.close()
+    ## Need to figure out how formated
+def getRawDoc(index):
+    client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
+    client.connect()
+    url = "https://fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix:e01ad0f8a3355ea74bf8efeb523cd6da8e8afe94f5a26b2e6af4a7112dd1d144@fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix.cloudantnosqldb.appdomain.cloud"
+    end_point = '{0}/{1}'.format(url, "rawtweets" + "/_all_docs")
+    params = {'include_docs': 'true'}
+    response = client.r_session.get(end_point, params=params)
+    return response.json()["rows"][index]
 
-lastDatabaseIdRead = {}
-for location in locations:
-    get
-    
 
+
+    ## Need to figure out how formated
+# Other option is "_id"
+def getRawData(index, key = "tweet"):
+    client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
+    client.connect()
+    url = "https://fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix:e01ad0f8a3355ea74bf8efeb523cd6da8e8afe94f5a26b2e6af4a7112dd1d144@fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix.cloudantnosqldb.appdomain.cloud"
+    end_point = '{0}/{1}'.format(url, "rawtweets" + "/_all_docs")
+    params = {'include_docs': 'true'}
+    response = client.r_session.get(end_point, params=params)
+    print(response.json())
+    return response.json()["rows"][index][key]
 
 
     #TESTED WORKS
@@ -45,7 +48,7 @@ def getTweetAtIndex(index, location, key = "tweet"):
     params = {'include_docs': 'true'}
     response = client.r_session.get(end_point, params=params)
     return response.json()["rows"][index]["doc"][key]
-print(getTweetAtIndex(0, "sanfransisco", key = "probability"))
+#print(getTweetAtIndex(0, "sanfransisco", key = "probability"))
 
     # TESTED WORKS
 def calculateLocationEarthquakeProbability(location):
@@ -68,16 +71,15 @@ def calculateLocationEarthquakeProbability(location):
 
     # TESTED WORKS
 # takes the text and probability and insterts it into database
-def insertTweet(location, text, probability):
+def insertTweet(database, text, probability):
     client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
     client.connect()
     jsonDoc= { "tweet": text,
               "probability": probability
             }
-    database = databases[location]
     database.create_document(jsonDoc)        
     return
-insertTweet("sanfransisco", "i want cheetos", 0.01)
+#insertTweet("sanfransisco", "i want cheetos", 0.01)
 
     # TESTED WORKS
 # takes in a text and the regression model and calculates the probability of 
@@ -106,3 +108,42 @@ def calculateRelevance(text, regModel):
     one = pd.Series([1])
     data =pd.DataFrame([list(one.append(pd.Series(dictionary)))])
     return regModel.predict(data)
+
+
+
+
+databases= {}
+locations = []
+
+    #begin parsing tweets
+# regressor for calculateRelveance()
+file = open("textRecognitionModel.sav", 'rb')
+relevanceRegressor = pickle.load(file)
+file.close()
+
+lastIdRead =  getRawData(0, "_id" )
+
+while True:
+    doc = getRawDoc(0)
+    idTmp = doc["_id"]
+    i = 0 #if idTmp somehow missed lastIdRead
+    while (lastIdRead != idTmp and i < 10):
+        lasIdRead = idTmp
+        location = doc["location"]
+        location = location.lower()
+        location = location.replace(" ", "_")
+        if (location not in locations):
+            client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
+            client.connect()
+            databases[location] = client.create_database(location + "_database")
+            locations.append(location)
+            
+        text = doc["text"]
+        probability = calculateRelevance(text, relevanceRegressor)
+        insertTweet(databases[location], text, probability)
+        i = i + 1  
+    i = 0
+    time.sleep(0.4)
+    
+        
+        
