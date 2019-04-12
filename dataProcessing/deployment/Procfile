@@ -1,1 +1,1 @@
-web: python deploymentDataProcessing.py
+worker: python deploymentDataProcessing.py

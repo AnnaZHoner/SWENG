@@ -13,7 +13,7 @@ import pickle
 import time
 
 
-    ## Need to figure out how formated
+    # Tested Works
 def getRawDoc(index):
     client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
     client.connect()
@@ -25,7 +25,7 @@ def getRawDoc(index):
 
 
 
-    ## Need to figure out how formated
+    # Tested Works
 # Other option is "_id"
 def getRawData(index, key = "tweet"):
     client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
