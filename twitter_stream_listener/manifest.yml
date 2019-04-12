@@ -1,0 +1,6 @@
+---
+applications:
+ - name: TwitterScraping
+   random-route: true
+   memory: 256M
+   timeout: 180
