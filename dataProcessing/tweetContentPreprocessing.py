@@ -144,8 +144,7 @@ for i in range(np.size(d[:,0:1]) - NTweets):
         print(d[j + i][0])
     
     row = pd.Series(row)
-    dataset= dataset.append(row,  ignore_index=True)
-    print("-----------------------------------------")
+    dataset= dataset.append(row,  ignore_index=True) 
     
 
 Xreg2 = dataset
