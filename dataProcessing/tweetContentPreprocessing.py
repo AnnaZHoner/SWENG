@@ -213,3 +213,60 @@ def calculateRelevance(text, regModel):
 
 print(calculateRelevance("I'm so angry, earthquake!", regressor))
 # Output result to table with text
+
+
+from cloudant.client import Cloudant
+from cloudant.error import CloudantException
+from cloudant.result import Result, ResultByKey
+
+client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
+client.connect()
+
+
+databaseName = "sanfransisco_tweets"
+
+myDatabase = client.create_database(databaseName)
+if myDatabase.exists():
+   print ("'{0}' successfully created.\n".format(databaseName))
+else:
+    print("not exist")
+
+
+
+
+
+# takes the text and probability and insterts it into the table
+def insertTweet(database, text, probability):
+    jsonDoc= { "tweet": text,
+              "probability": probability
+            }
+    
+    newDocument = database.create_document(jsonDoc)
+    if newDocument.exists():
+        print("exists")
+        
+    return
+
+insertTweet(myDatabase, "opa", 0.4)
+
+result_collection = Result(myDatabase.all_docs)
+print ("Retrieved minimal document:\n{0}\n".format(result_collection[0]))
+
+result_collection = Result(myDatabase.all_docs, include_docs=True)
+print ("Retrieved minimal document:\n{0}\n".format(result_collection[0]))
+
+
+url = "https://fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix:e01ad0f8a3355ea74bf8efeb523cd6da8e8afe94f5a26b2e6af4a7112dd1d144@fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix.cloudantnosqldb.appdomain.cloud"
+end_point = '{0}/{1}'.format(url, databaseName + "/_all_docs")
+params = {'include_docs': 'true'}
+
+response = client.r_session.get(end_point, params=params)
+print ("{0}\n".format(response.json()))
+
+
+
+
+
+
+
+
