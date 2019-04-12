@@ -18,10 +18,10 @@ def getRawDoc(index):
     client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
     client.connect()
     url = "https://fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix:e01ad0f8a3355ea74bf8efeb523cd6da8e8afe94f5a26b2e6af4a7112dd1d144@fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix.cloudantnosqldb.appdomain.cloud"
-    end_point = '{0}/{1}'.format(url, "rawtweets" + "/_all_docs")
+    end_point = '{0}/{1}'.format(url, "raw_tweets" + "/_all_docs")
     params = {'include_docs': 'true'}
     response = client.r_session.get(end_point, params=params)
-    return response.json()["rows"][index]
+    return response.json()["rows"][index]["doc"]
 
 
 
@@ -31,11 +31,11 @@ def getRawData(index, key = "tweet"):
     client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
     client.connect()
     url = "https://fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix:e01ad0f8a3355ea74bf8efeb523cd6da8e8afe94f5a26b2e6af4a7112dd1d144@fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix.cloudantnosqldb.appdomain.cloud"
-    end_point = '{0}/{1}'.format(url, "rawtweets" + "/_all_docs")
+    end_point = '{0}/{1}'.format(url, "raw_tweets" + "/_all_docs")
     params = {'include_docs': 'true'}
     response = client.r_session.get(end_point, params=params)
-    print(response.json())
-    return response.json()["rows"][index][key]
+    print(response.json()["rows"][index]["doc"])
+    return response.json()["rows"][index]["doc"][key]
 
 
     #TESTED WORKS
@@ -110,7 +110,9 @@ def calculateRelevance(text, regModel):
     return regModel.predict(data)
 
 
-
+client = Cloudant.iam("fc535eaf-52c1-47a3-acf6-c990cfa80dfd-bluemix", "AWLmt1r-iqtEeWTDjEC38l320ufQGsFAheg40iutvxcB")
+client.connect()
+alert_database = client.create_database("alert_database")
 
 databases= {}
 locations = []
@@ -121,14 +123,17 @@ file = open("textRecognitionModel.sav", 'rb')
 relevanceRegressor = pickle.load(file)
 file.close()
 
-lastIdRead =  getRawData(0, "_id" )
+lastIdRead =  getRawDoc(0)
+lastIdRead = lastIdRead['id']
 
 while True:
     doc = getRawDoc(0)
-    idTmp = doc["_id"]
-    i = 0 #if idTmp somehow missed lastIdRead
+    print(doc)
+    idTmp = doc["id"]
+    i = 0 #if idTmp somehow missed lastIdRead    
+    if lastIdRead != idTmp:
+        lastIdRead = idTmp
     while (lastIdRead != idTmp and i < 10):
-        lasIdRead = idTmp
         location = doc["location"]
         location = location.lower()
         location = location.replace(" ", "_")
@@ -142,8 +147,16 @@ while True:
         probability = calculateRelevance(text, relevanceRegressor)
         insertTweet(databases[location], text, probability)
         i = i + 1  
+        getRawDoc(i)
     i = 0
-    time.sleep(0.4)
     
+    for location in locations:
+        probability = calculateLocationEarthquakeProbability(location)
+        jsonDoc= { "location": location,
+              "probability": probability
+            }
+        alert_database.create_document(jsonDoc)   
+    
+    time.sleep(1)
         
         
