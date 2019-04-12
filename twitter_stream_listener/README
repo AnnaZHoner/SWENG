@@ -1,0 +1,15 @@
+  --twitter_stream_listener
+           Description: files that run a twitter scraper that tracks nouns and adjectives related to earthquakes and writes out to database.
+           
+           Files:
+             Code:
+               twitter_credentials.py  --  generates json script for twitter credentials
+               stream_fileter.py -- file that filters tweets for using tweepy API and connects to IBM cloudant database.
+               test.py -- general test file for connection to database.
+          
+          Deployment:
+              stream_filter.py -- The script that is running as a web application.
+              manifest.txt, Procfile, requirements.txt -- configurations for the application running
+              
+          Datafiles:
+              tweets_san_francisco.json -- sample output of the tweets gathered
